@@ -1,4 +1,4 @@
-export interface Match {
+export interface Game {
   id: number;
   home: string;
   away: string;

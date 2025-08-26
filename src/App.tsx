@@ -1,14 +1,14 @@
 import './App.css';
 import { Layout } from './components/Layout.tsx';
 import { Navbar } from './components/Navbar.tsx';
-import { ScoreBoardPage } from './pages/ScoreBoard/ScoreBoard.page.tsx';
+import { ScoreboardPage } from './pages/ScoreBoard/Scoreboard.page.tsx';
 
 function App() {
   return (
     <>
       <Navbar />
       <Layout>
-        <ScoreBoardPage />
+        <ScoreboardPage />
       </Layout>
     </>
   );
