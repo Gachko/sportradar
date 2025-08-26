@@ -1,69 +1,28 @@
-# React + TypeScript + Vite
+# Tech Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- React – UI layer. Simple component model and hooks fit the app’s size and complexity.
+- Material UI (MUI) – ready-made accessible components (Dialog, Button, List, etc.) for fast, consistent UI
+- Zustand – lightweight state management to keep a centralized store (games list + actions) without the overhead of larger solutions; perfect for a small app.
+- Jest – unit tests for store and components, focused on user-visible behavior.
 
-Currently, two official plugins are available:
+# Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Install dependencies: npm i
+- Start the dev server: npm run dev
 
-## Expanding the ESLint configuration
+App will be available at: http://localhost:5173/
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# What’s Implemented
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Start/finish/update game flows, summary, game list
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+# Possible Improvements
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- Dialogs architecture: introduce a Modal Provider (context) with a single modal root, extract tiny reusable hooks
+- Validation & error reporting: Show field-specific messages (required, must be integer, must be ≥ 0, teams must differ), disable submit while invalid etc.
+- Performance: Memoize list items (React.memo), virtualized list rendering
+- Constants & configuration: Extract UI strings, labels, and magic numbers to constants.ts etc.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Commit Style
 
-```js
-// eslint.config.js
-import reactDom from 'eslint-plugin-react-dom';
-import reactX from 'eslint-plugin-react-x';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+Commits are brief and minimal on purpose — this was a solo test task and I kept messages short while coding “for myself.”
