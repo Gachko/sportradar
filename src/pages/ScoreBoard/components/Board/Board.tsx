@@ -1,26 +1,32 @@
-import { Divider, List, Typography } from '@mui/material';
-import { useScoreBoardStore } from '../../../../store/useScoreBoardStore.tsx';
-import type { Match } from '../../../../types';
+import { List, Typography } from '@mui/material';
+import type { Game } from '../../../../types';
+import { FinishGameDialog } from '../FinishGameDialog/FinishGameDialog.tsx';
 import { BoardItem } from './BoardItem.tsx';
+import { useBoard } from './useBoard.tsx';
 
 export const Board = () => {
-  const matches = useScoreBoardStore((s) => s.matches);
+  const { games, finishId, openFinish, closeFinish } = useBoard();
 
-  if (!matches.length)
+  if (!games.length)
     return (
       <Typography variant="h2" component="h2">
-        No matches.
+        No games.
       </Typography>
     );
 
   return (
-    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-      {matches.map((match: Match, idx) => (
-        <div key={match.id}>
-          <BoardItem {...match} />
-          {idx !== matches.length - 1 && <Divider component="li" />}
-        </div>
-      ))}
-    </List>
+    <>
+      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        {games.map((match: Game, idx) => (
+          <BoardItem
+            key={match.id}
+            {...match}
+            divider={idx !== games.length - 1}
+            onFinish={openFinish}
+          />
+        ))}
+      </List>
+      {finishId !== null && <FinishGameDialog open onClose={closeFinish} id={finishId} />}
+    </>
   );
 };

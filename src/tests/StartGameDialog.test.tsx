@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { StartGameDialog } from '../pages/ScoreBoard/components/StartGameDialog/StartGameDialog';
-import { useScoreBoardStore } from '../store/useScoreBoardStore';
+import { useScoreboardStore } from '../store/useScoreboardStore.tsx';
 
 beforeEach(() => {
-  useScoreBoardStore.setState({ matches: [] });
+  useScoreboardStore.setState({ games: [] });
 });
 
 describe('StartGameDialog', () => {
@@ -16,7 +16,7 @@ describe('StartGameDialog', () => {
     expect(screen.getByRole('button', { name: /Start/i })).toBeInTheDocument();
   });
 
-  it('should show errors whe fields are empty and should not add match', async () => {
+  it('should show errors whe fields are empty and should not add game', async () => {
     const user = userEvent.setup();
     render(<StartGameDialog open={true} onClose={jest.fn()} />);
 
@@ -25,11 +25,11 @@ describe('StartGameDialog', () => {
     expect(screen.getByText(/Home team is required/i)).toBeInTheDocument();
     expect(screen.getByText(/Away team is required/i)).toBeInTheDocument();
 
-    const { matches } = useScoreBoardStore.getState();
-    expect(matches).toHaveLength(0);
+    const { games } = useScoreboardStore.getState();
+    expect(games).toHaveLength(0);
   });
 
-  it('should add 0-0 match and close dialog', async () => {
+  it('should add 0-0 game and close dialog', async () => {
     const user = userEvent.setup();
     const onClose = jest.fn();
 
@@ -40,9 +40,9 @@ describe('StartGameDialog', () => {
 
     await user.click(screen.getByRole('button', { name: /Start/i }));
 
-    const { matches } = useScoreBoardStore.getState();
-    expect(matches).toHaveLength(1);
-    expect(matches[0]).toMatchObject({
+    const { games } = useScoreboardStore.getState();
+    expect(games).toHaveLength(1);
+    expect(games[0]).toMatchObject({
       home: 'Real',
       away: 'Madrid',
       homeScore: 0,

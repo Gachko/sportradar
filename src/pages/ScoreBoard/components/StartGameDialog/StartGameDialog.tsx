@@ -8,14 +8,15 @@ interface StartGameDialogProps {
 }
 
 export const StartGameDialog: React.FC<StartGameDialogProps> = ({ open, onClose }) => {
-  const { fields, handleSubmit, handleChange, values, showErrors } = useStartGameDialog({
-    onClose,
-  });
+  const { fields, handleSubmit, handleChange, values, showErrors, handleClose } =
+    useStartGameDialog({
+      onClose,
+    });
 
   return (
     <BaseDialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title="Start a New Game"
       onSubmit={handleSubmit}
       submitLabel="Start"
