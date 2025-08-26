@@ -70,3 +70,36 @@ describe('useScoreboardStore', () => {
     expect(games).toEqual(before);
   });
 });
+
+it('getSummaryGames sorts by total score desc and by recency when totals are equal', () => {
+  useScoreboardStore.setState({
+    games: [
+      { id: 1, home: 'Mexico', away: 'Canada', homeScore: 0, awayScore: 5 },
+      { id: 2, home: 'Spain', away: 'Brazil', homeScore: 10, awayScore: 2 },
+      { id: 3, home: 'Germany', away: 'France', homeScore: 2, awayScore: 2 },
+      { id: 4, home: 'Uruguay', away: 'Italy', homeScore: 6, awayScore: 6 },
+      { id: 5, home: 'Argentina', away: 'Australia', homeScore: 3, awayScore: 1 },
+    ],
+  });
+
+  const { getSummaryGames, games: original } = useScoreboardStore.getState();
+  const summary = getSummaryGames();
+
+  expect(summary.map((g) => g.id)).toEqual([4, 2, 1, 5, 3]);
+  expect(summary).not.toBe(original);
+});
+
+it('getSummaryGames keeps order by recency for equal totals (larger id first)', () => {
+  useScoreboardStore.setState({
+    games: [
+      { id: 100, home: 'Mexico', away: 'Canada', homeScore: 2, awayScore: 2 },
+      { id: 200, home: 'Spain', away: 'Brazil', homeScore: 2, awayScore: 2 },
+      { id: 150, home: 'Uruguay', away: 'Italy', homeScore: 0, awayScore: 1 },
+    ],
+  });
+
+  const { getSummaryGames } = useScoreboardStore.getState();
+  const summary = getSummaryGames();
+
+  expect(summary.map((g) => g.id)).toEqual([200, 100, 150]);
+});

@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { memo } from 'react';
+import { ListItemContent } from '@components';
 import EditIcon from '@mui/icons-material/Edit';
-import { Box, Button, IconButton, ListItem, ListItemText } from '@mui/material';
+import { Box, Button, IconButton, ListItem } from '@mui/material';
 import type { Game } from '@types';
 
 interface BoardItemProps {
@@ -44,24 +44,7 @@ export const BoardItem: React.FC<BoardItemProps> = memo(function BoardItem({
         </Box>
       }
     >
-      <ListItemText
-        primary={
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              gap: 3,
-            }}
-          >
-            <span>{home}</span>
-            <span>
-              {homeScore}:{awayScore}
-            </span>
-            <span>{away}</span>
-          </Box>
-        }
-      />
+      <ListItemContent home={home} homeScore={homeScore} awayScore={awayScore} away={away} />
     </ListItem>
   );
 });

@@ -1,6 +1,6 @@
 import { useDialog } from '@hooks';
 
-export const useScoreboard = () => {
+export const useSummary = () => {
   const { isDialogOpen, open, close } = useDialog();
 
   return {

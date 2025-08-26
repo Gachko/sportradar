@@ -3,7 +3,7 @@ import { Board, StartGameDialog } from './components';
 import { useScoreboard } from './useScoreboard.tsx';
 
 export const ScoreboardPage = () => {
-  const { isStartOpen, open, close } = useScoreboard();
+  const { isDialogOpen, open, close } = useScoreboard();
 
   return (
     <>
@@ -11,7 +11,7 @@ export const ScoreboardPage = () => {
         Start new game
       </Button>
       <Board />
-      <StartGameDialog open={isStartOpen} onClose={close} />
+      <StartGameDialog open={isDialogOpen} onClose={close} />
     </>
   );
 };
