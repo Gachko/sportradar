@@ -9,14 +9,15 @@ type FieldKey = 'home' | 'away';
 
 const INITIAL = { home: '', away: '' };
 
-export const useStartGameDialog = ({ onClose }: useStartGameDialogProps) => {
-  const fields: ReadonlyArray<{ key: FieldKey; label: string; autoFocus?: boolean }> = [
-    { key: 'home', label: 'Home Team', autoFocus: true },
-    { key: 'away', label: 'Away Team' },
-  ] as const;
+const FIELDS: ReadonlyArray<{ key: FieldKey; label: string; autoFocus?: boolean }> = [
+  { key: 'home', label: 'Home Team', autoFocus: true },
+  { key: 'away', label: 'Away Team' },
+] as const;
 
+export const useStartGameDialog = ({ onClose }: useStartGameDialogProps) => {
   const startGame = useScoreboardStore((s) => s.startGame);
-  const [values, setValues] = useState({ home: '', away: '' });
+
+  const [values, setValues] = useState(INITIAL);
   const [showErrors, setShowErrors] = useState(false);
 
   const handleChange = (field: FieldKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +55,7 @@ export const useStartGameDialog = ({ onClose }: useStartGameDialogProps) => {
   }, [onClose, reset]);
 
   return {
-    fields,
+    fields: FIELDS,
     handleSubmit,
     handleChange,
     handleClose,
