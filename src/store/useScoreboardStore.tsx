@@ -6,9 +6,10 @@ interface ScoreBoardStore {
   startGame: (home: string, away: string) => void;
   finishGame: (gameId: number) => void;
   updateGame: (game: Game) => void;
+  getSummaryGames: () => Game[];
 }
 
-export const useScoreboardStore = create<ScoreBoardStore>((set) => ({
+export const useScoreboardStore = create<ScoreBoardStore>((set, get) => ({
   games: [],
   startGame: (home, away) =>
     set((state) => ({
@@ -22,4 +23,14 @@ export const useScoreboardStore = create<ScoreBoardStore>((set) => ({
     set((state) => ({
       games: state.games.map((g) => (g.id === game.id ? game : g)),
     })),
+
+  getSummaryGames: () => {
+    const games = get().games;
+    return [...games].sort((a, b) => {
+      const ta = a.homeScore + a.awayScore;
+      const tb = b.homeScore + b.awayScore;
+      if (tb !== ta) return tb - ta;
+      return b.id - a.id;
+    });
+  },
 }));

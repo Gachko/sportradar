@@ -16,6 +16,9 @@ module.exports = {
     '^@types$': '<rootDir>/src/types/index.ts',
     '^@types/(.*)$': '<rootDir>/src/types/$1',
 
+    '^@hooks': '<rootDir>/src/hooks/index.ts',
+    '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
+
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
   globals: {
