@@ -1,5 +1,5 @@
+import { BaseDialog } from '@components';
 import { Stack, TextField } from '@mui/material';
-import { BaseDialog } from '../../../../components/BaseDialog.tsx';
 import { useStartGameDialog } from './useStartGameDialog.tsx';
 
 interface StartGameDialogProps {

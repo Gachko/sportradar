@@ -1,6 +1,6 @@
+import { BoardItem } from '@pages/ScoreBoard/components';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BoardItem } from '../pages/ScoreBoard/components/Board/BoardItem';
 
 it('calls onFinish with its id when Finish clicked', async () => {
   const user = userEvent.setup();

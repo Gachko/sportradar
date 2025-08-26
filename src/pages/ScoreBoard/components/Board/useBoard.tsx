@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useScoreboardStore } from '../../../../store/useScoreboardStore.tsx';
+import { useScoreboardStore } from '@store';
 
 export const useBoard = () => {
   const games = useScoreboardStore((s) => s.games);

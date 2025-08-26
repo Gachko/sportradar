@@ -1,6 +1,6 @@
 import { List, Typography } from '@mui/material';
-import type { Game } from '../../../../types';
-import { FinishGameDialog } from '../FinishGameDialog/FinishGameDialog.tsx';
+import type { Game } from '@types';
+import { FinishGameDialog } from '@pages/ScoreBoard/components';
 import { BoardItem } from './BoardItem.tsx';
 import { useBoard } from './useBoard.tsx';
 
