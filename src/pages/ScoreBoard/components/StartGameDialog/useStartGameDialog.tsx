@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useScoreboardStore } from '../../../../store/useScoreboardStore.tsx';
+import { useScoreboardStore } from '@store';
 
 interface useStartGameDialogProps {
   onClose: () => void;
@@ -19,13 +19,10 @@ export const useStartGameDialog = ({ onClose }: useStartGameDialogProps) => {
   const [values, setValues] = useState({ home: '', away: '' });
   const [showErrors, setShowErrors] = useState(false);
 
-  const handleChange = useCallback(
-    (field: FieldKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const v = e.target.value;
-      setValues((prev) => ({ ...prev, [field]: v }));
-    },
-    [],
-  );
+  const handleChange = (field: FieldKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = e.target.value;
+    setValues((prev) => ({ ...prev, [field]: v }));
+  };
 
   const reset = useCallback(() => {
     setValues(INITIAL);

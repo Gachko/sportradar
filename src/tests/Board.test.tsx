@@ -1,7 +1,7 @@
+import { Board } from '@pages/ScoreBoard/components';
+import { useScoreboardStore } from '@store';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Board } from '../pages/ScoreBoard/components/Board/Board';
-import { useScoreboardStore } from '../store/useScoreboardStore.tsx';
 
 beforeEach(() => {
   useScoreboardStore.setState({ games: [] });

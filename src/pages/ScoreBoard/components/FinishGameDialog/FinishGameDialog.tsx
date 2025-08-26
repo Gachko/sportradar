@@ -1,5 +1,5 @@
+import { BaseDialog } from '@components';
 import { Typography } from '@mui/material';
-import { BaseDialog } from '../../../../components/BaseDialog.tsx';
 import { useFinishGameDialog } from './useFinishGameDialog.tsx';
 
 interface FinishGameDialogProps {

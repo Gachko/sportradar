@@ -1,4 +1,4 @@
-import { useScoreboardStore } from '../../../../store/useScoreboardStore.tsx';
+import { useScoreboardStore } from '@store';
 
 interface useFinishGameDialogProps {
   id: number;

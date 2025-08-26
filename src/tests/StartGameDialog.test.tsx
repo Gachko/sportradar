@@ -1,7 +1,7 @@
+import { StartGameDialog } from '@pages/ScoreBoard/components';
+import { useScoreboardStore } from '@store';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { StartGameDialog } from '../pages/ScoreBoard/components/StartGameDialog/StartGameDialog';
-import { useScoreboardStore } from '../store/useScoreboardStore.tsx';
 
 beforeEach(() => {
   useScoreboardStore.setState({ games: [] });

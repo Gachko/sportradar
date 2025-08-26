@@ -1,7 +1,5 @@
-import './App.css';
-import { Layout } from './components/Layout.tsx';
-import { Navbar } from './components/Navbar.tsx';
-import { ScoreboardPage } from './pages/ScoreBoard/Scoreboard.page.tsx';
+import { Layout, Navbar } from '@components';
+import { ScoreboardPage } from '@pages';
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { useScoreboardStore } from '../store/useScoreboardStore.tsx';
+import { useScoreboardStore } from '@store';
 
 beforeEach(() => {
   useScoreboardStore.setState({ games: [] });

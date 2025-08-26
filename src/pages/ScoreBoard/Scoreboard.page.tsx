@@ -1,6 +1,5 @@
 import { Button } from '@mui/material';
-import { Board } from './components/Board/Board.tsx';
-import { StartGameDialog } from './components/StartGameDialog/StartGameDialog.tsx';
+import { Board, StartGameDialog } from './components';
 import { useScoreboard } from './useScoreboard.tsx';
 
 export const ScoreboardPage = () => {
