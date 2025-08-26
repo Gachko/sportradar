@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 it('calls onFinish with its id when Finish clicked', async () => {
   const user = userEvent.setup();
   const onFinish = jest.fn();
+  const onUpdate = jest.fn();
 
   render(
     <ul>
@@ -15,6 +16,7 @@ it('calls onFinish with its id when Finish clicked', async () => {
         homeScore={0}
         awayScore={0}
         onFinish={onFinish}
+        onUpdate={onUpdate}
       />
     </ul>,
   );

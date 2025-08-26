@@ -2,6 +2,7 @@ import * as React from 'react';
 import { memo } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { Box, Button, IconButton, ListItem, ListItemText } from '@mui/material';
+import type { Game } from '@types';
 
 interface BoardItemProps {
   id: number;
@@ -11,6 +12,7 @@ interface BoardItemProps {
   awayScore: number;
   divider?: boolean;
   onFinish: (id: number) => void;
+  onUpdate: (game: Game) => void;
 }
 
 export const BoardItem: React.FC<BoardItemProps> = memo(function BoardItem({
@@ -21,6 +23,7 @@ export const BoardItem: React.FC<BoardItemProps> = memo(function BoardItem({
   awayScore,
   divider,
   onFinish,
+  onUpdate,
 }) {
   return (
     <ListItem
@@ -28,7 +31,11 @@ export const BoardItem: React.FC<BoardItemProps> = memo(function BoardItem({
       disableGutters
       secondaryAction={
         <Box sx={{ display: 'flex', gap: 5 }}>
-          <IconButton edge="end" aria-label="edit" onClick={() => {}}>
+          <IconButton
+            edge="end"
+            aria-label="edit"
+            onClick={() => onUpdate({ id, home, away, homeScore, awayScore })}
+          >
             <EditIcon />
           </IconButton>
           <Button variant="outlined" size="small" color="error" onClick={() => onFinish(id)}>

@@ -33,4 +33,40 @@ describe('useScoreboardStore', () => {
     expect(games[0].id).toBe(1);
     expect(games[0]).toMatchObject({ home: 'Milan', away: 'Inter' });
   });
+
+  it('updateGame by id and save links to another elements', () => {
+    const g1 = { id: 1, home: 'Milan', away: 'Inter', homeScore: 0, awayScore: 0 };
+    const g2 = { id: 2, home: 'Real', away: 'Madrid', homeScore: 1, awayScore: 2 };
+    useScoreboardStore.setState({ games: [g1, g2] });
+
+    const updated = { ...g2, homeScore: 3, awayScore: 3 };
+    useScoreboardStore.getState().updateGame(updated);
+
+    const { games } = useScoreboardStore.getState();
+    expect(games).toHaveLength(2);
+
+    const game2 = games.find((g) => g.id === 2)!;
+    expect(game2).toMatchObject({ homeScore: 3, awayScore: 3 });
+
+    const game1 = games.find((g) => g.id === 1)!;
+    expect(game1).toBe(g1);
+  });
+
+  it('updateGame with non-existent id does not change the content', () => {
+    useScoreboardStore.setState({
+      games: [{ id: 7, home: 'Milan', away: 'Madrid', homeScore: 0, awayScore: 0 }],
+    });
+
+    const before = JSON.parse(JSON.stringify(useScoreboardStore.getState().games));
+    useScoreboardStore.getState().updateGame({
+      id: 999,
+      home: 'Milan',
+      away: 'Madrid',
+      homeScore: 5,
+      awayScore: 5,
+    });
+
+    const { games } = useScoreboardStore.getState();
+    expect(games).toEqual(before);
+  });
 });
