@@ -1,0 +1,39 @@
+import { Stack, TextField } from '@mui/material';
+import { BaseDialog } from '../../../../components/BaseDialog.tsx';
+import { useStartGameDialog } from './useStartGameDialog.tsx';
+
+interface StartGameDialogProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+export const StartGameDialog: React.FC<StartGameDialogProps> = ({ open, onClose }) => {
+  const { fields, handleSubmit, handleChange, values, showErrors } = useStartGameDialog({
+    onClose,
+  });
+
+  return (
+    <BaseDialog
+      open={open}
+      onClose={onClose}
+      title="Start a New Game"
+      onSubmit={handleSubmit}
+      submitLabel="Start"
+    >
+      <Stack spacing={2} sx={{ mt: 1 }}>
+        {fields.map(({ key, label, autoFocus }) => (
+          <TextField
+            key={key}
+            label={label}
+            value={values[key]}
+            onChange={handleChange(key)}
+            fullWidth
+            autoFocus={autoFocus}
+            error={showErrors && !values[key].trim()}
+            helperText={showErrors && !values[key].trim() ? `${label} is required` : ''}
+          />
+        ))}
+      </Stack>
+    </BaseDialog>
+  );
+};
