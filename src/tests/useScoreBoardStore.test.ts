@@ -5,7 +5,7 @@ beforeEach(() => {
 });
 
 describe('useScoreBoardStore', () => {
-  it('startGame добавляет матч с начальными значениями', () => {
+  it('startGame add match with init score', () => {
     const { startGame } = useScoreBoardStore.getState();
     startGame('Milan', 'Inter');
 
